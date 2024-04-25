@@ -172,9 +172,14 @@ function get_global_email(){
 
 document.addEventListener('DOMContentLoaded', ()=>{
     let user_name = document.getElementById('user');
+    let user_btn = document.getElementsByClassName('user-btn');
     let log = document.getElementById('log');
+    console.log(user_btn[1].parentNode);
 
     if(!isLoggedIn()){
+       
+        user_btn[0].style.display = 'none';
+        user_btn[1].parentNode.style.display = 'none';
         user_name.textContent = ''
         log.textContent = 'Log in'
         
@@ -182,12 +187,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
     } else{
-        
+        user_btn[0].style.display = 'block';
+        user_btn[1].parentNode.style.display = 'block';
         const global_email = get_global_email();
         const userDataString = localStorage.getItem(global_email);
         const userData = JSON.parse(userDataString);
-
-        user_name.textContent = JSON.parse(localStorage.getItem('user')).data.name;
+        user_btn[0].parentElement.style.display = 'block';
+        user_btn[1].parentElement.style.display = 'block';
+        user_name.textContent = "Xin chào, " +JSON.parse(localStorage.getItem('user')).data.name;
         log.textContent = 'Log out'
     }
 });

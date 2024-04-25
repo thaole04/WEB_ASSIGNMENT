@@ -1,8 +1,12 @@
 // Get fields
 let search_fields = document.getElementById('search-fields')
 let cart_fields = document.getElementById('cart-fields')
+let user_fields = document.getElementById('user-fields')
 let cart_btn = document.querySelectorAll('.cart-btn');
+let user_btn = document.querySelectorAll('.user-btn');
 let toggle_fields = document.getElementById('navbarSupportedContent')
+
+
 
 function close_expand_single(field1){
 
@@ -35,16 +39,30 @@ cart_btn.forEach((element) => {
             window.location.href='/pages/sign.php'
             return;
         }
+        
         window.location.href ='/pages/cart.php';
+    });
+});
+
+user_btn.forEach((element) => {
+    element.addEventListener('click', ()=>{
+        if(!(localStorage.getItem('user'))){
+            alert("Please login to use this features");
+            window.location.href='/pages/sign.php'
+            return;
+        }
+        window.location.href ='/pages/account.php';
     });
 });
 
 toggle_fields.addEventListener('show.bs.collapse', () => {
     close_expand(search_fields, cart_fields);
+    close_expand(search_fields, user_fields);
 });
 
 search_fields.addEventListener('show.bs.collapse', () => {
     close_expand(toggle_fields, cart_fields);
+    close_expand(toggle_fields, user_fields);
 
     const screenWidth = getCurrentScreenSize();
     if (screenWidth != "md"){
@@ -53,6 +71,9 @@ search_fields.addEventListener('show.bs.collapse', () => {
 });
 
 cart_fields.addEventListener('show.bs.collapse', () => {
+    close_expand(search_fields, toggle_fields);
+});
+user_fields.addEventListener('show.bs.collapse', () => {
     close_expand(search_fields, toggle_fields);
 });
 

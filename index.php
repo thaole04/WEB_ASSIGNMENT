@@ -351,7 +351,7 @@
     <script src="./scripts/user_data/handle_sign.js"></script>
     <!-- Navigate to User list page if user role = admin -->
     <!-- <script src="./scripts/redirect_to_admin_user_list_page.js"></script> -->
-    <script src="./scripts/add_user_list.js"></script>
+    <!-- <script src="./scripts/add_user_list.js"></script> -->
 </body>
 
 </html>
