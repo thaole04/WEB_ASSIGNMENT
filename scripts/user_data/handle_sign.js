@@ -174,12 +174,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let user_name = document.getElementById('user');
     let user_btn = document.getElementsByClassName('user-btn');
     let log = document.getElementById('log');
-    console.log(user_btn[1].parentNode);
+    let logbtn = document.getElementsByClassName('logout-btn');
+    console.log("oke",logbtn[1].parentElement);
 
     if(!isLoggedIn()){
        
-        user_btn[0].style.display = 'none';
+        
         user_btn[1].parentNode.style.display = 'none';
+        
+     
+        let temp = logbtn[1].parentNode;
+        temp.innerHTML = "<svg class=\"logout-btn\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#0000000\" width=\"20px\" height=\"25px\" viewBox=\"0 0 32 32\" version=\"1.1\"> <path d=\"M16.642 20.669c-0.391 0.39-0.391 1.023-0 1.414 0.195 0.195 0.451 0.293 0.707 0.293s0.512-0.098 0.707-0.293l5.907-6.063-5.907-6.063c-0.39-0.39-1.023-0.39-1.414 0s-0.391 1.024 0 1.414l3.617 3.617h-19.264c-0.552 0-1 0.448-1 1s0.448 1 1 1h19.326zM30.005 0h-18c-1.105 0-2.001 0.895-2.001 2v9h2.014v-7.78c0-0.668 0.542-1.21 1.21-1.21h15.522c0.669 0 1.21 0.542 1.21 1.21l0.032 25.572c0 0.668-0.541 1.21-1.21 1.21h-15.553c-0.668 0-1.21-0.542-1.21-1.21v-7.824l-2.014 0.003v9.030c0 1.105 0.896 2 2.001 2h18c1.105 0 2-0.895 2-2v-28c-0.001-1.105-0.896-2-2-2z\"/> </svg>";
+
+        temp.style = "background-color: #95D240;";
+
         user_name.textContent = ''
         log.textContent = 'Log in'
         
@@ -189,6 +197,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
     } else{
         user_btn[0].style.display = 'block';
         user_btn[1].parentNode.style.display = 'block';
+
+        let temp = logbtn[1].parentNode;
+        
+        temp.innerHTML = "<svg class=\"logout-btn\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"#0000000\" width=\"20px\" height=\"25px\" viewBox=\"0 0 24 26\" version=\"1.1\"> <path d=\"M15,24H0V2h15v8h-2V4H2v18h11v-6h2V24z M18.4,18.7L17,17.3l3.3-3.3H5v-2h15.3L17,8.7l1.4-1.4L24,13L18.4,18.7z\"/> </svg>";
+        temp.style.backgroundColor = "red";
+
         const global_email = get_global_email();
         const userDataString = localStorage.getItem(global_email);
         const userData = JSON.parse(userDataString);
@@ -201,6 +215,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 const logInLink = document.getElementById('log');
+const user_name = document.getElementById('user');
+// const user_btn = document.getElementsByClassName('user-btn');
+const log = document.getElementById('log');
+const logbtnn = document.getElementsByClassName('logout-btn');
+
 logInLink.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default behavior of navigating to the empty href
   
@@ -215,4 +234,20 @@ logInLink.addEventListener('click', function(event) {
     window.location.href = '/pages/sign.php';
   
 });
+logbtnn[1].parentElement.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default behavior of navigating to the empty href
+  
+    if (isLoggedIn()){
+        logout();
+        user_name.textContent = '';
+        log.textContent = 'Log in';
+        
+    }
+    
+    // Redirect to the new target page
+    window.location.href = '/pages/sign.php';
+  
+});
+
+
 
