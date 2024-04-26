@@ -114,56 +114,32 @@ function generateItem(id, name, image_url, price, short_description, quantity) {
   for (i in short_description) {
     list_features += `<li class="fb">${short_description[i]}</li>`;
   }
+  list_features += '<li class="fb">Click to see more...</li>';
 
   // Create template
   var product_template = document.createElement('div');
   product_template.className =
-    'col-lg-10 col-sm-12 card border-0 border-bottom border-dark rounded-0 bg-light mb-3';
+    'card border-0 rounded-0 bg-light col-xs-6 col-sm-6 col-md-4 col-lg-4 item mb-4';
   product_template.id = `${id}`;
 
   var product_body = `
-    <div class="row">
-
-        <div class="col-md-2 col-4">
-            <img src=${image_url} alt="img" class="rounded img-fluid" id="product-${id}-img">
-        </div>
-
-        <div class="col-md-10 col-8">
-            <div class="card-body pt-0">
-                <div class="d-md-flex justify-content-md-between">
-                    <h5 class="card-titles fb" id="product-${id}-name">${name}</h5>
-                    <span class="fb fw-bolder" id="product-${id}-price">$${price}</span>
-                </div>
-                
-                <ul class="features" id = "product-${id}-short_description">
+    <div class="d-flex flex-column justify-content-between align-items-center col-4 row-4" style="width: 100%; height: 100%;">
+        <div class="my-2 position-relative" style="width: 80%; height: auto;">
+            <div class="position-absolute d-none" style="width: 92%; height: 92%; background-color: rgba(240, 235, 227, 0.8); transition: 0.5s ease; transform: scale(1.1); right: 4%; top: 4%;" id="list_features-${id}-img">
+                <ul>
                     ${list_features}
                 </ul>
             </div>
+            <img src=${image_url} alt="img" class="rounded img-fluid" id="product-${id}-img" style="min-height: 100%;object-fit: cover; aspect-ratio : 1 / 1">
         </div>
-
-    </div>
-    <div class="mb-3 mt-0 col-md-10 offset-md-2">
-
-        <div class="float-end ms-4 d-none" id="quantity-${id}-container">
-            <!-- <span>Qty: </span> -->
-            <button id="down-${id}" class="btn btn-primary m-0 py-0" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
-
-            <input id="quantity-${id}" style="width: 50px;" min="0" max="${quantity}" name="quantity" value="1" type="number"/>
-            
-            <button id="up-${id}" class="btn btn-primary m-0 py-0" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">+</button>
-            
-            <button id="update-${id}" class="btn btn-success m-0 ms-3 py-1 px-2 d-inline-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                </svg>
-            </button>
-
+        <div class="border-bottom border-dark mb-1 mt-2">
+            <p class="fb fw-bolder text-center mb-2" id="product-${id}-name">${name}</p>
         </div>
-
-        <div class="float-end p-0 m-0">
-            <button type="button" class="btn btn-primary m-0 align-content-end align-self-end" id="product-${id}-btn">Add to cart</button>
+        <span class="fb fw-bolder" id="product-${id}-price">$${price}</span>
+        <div class="px-4 m-0 mt-2 d-flex justify-content-center" style="width: 100%;">
+            <button type="button" class="btn btn-primary m-0 me-5 d-sm-none d-lg-block" id="detail-${id}-btn" style="max-height: 40px">Detail</button>
+            <button type="button" class="btn btn-primary m-0" id="product-${id}-btn" style="max-height: 40px">Add to cart</button>
         </div>
-
     </div>
     `;
 
@@ -210,6 +186,7 @@ async function Load_Product_List(category_id, sort_id) {
     );
 
     // Append to Products-container
+    product_container.classList.add('row');
     product_container.appendChild(product_template);
   }
 
@@ -235,6 +212,8 @@ async function Page_load_with_filer(category_id, sort_id) {
     // Get product html element's infor
     let id = childrens[i].id;
     let img = childrens[i].querySelector(`#product-${id}-img`);
+    let detail = childrens[i].querySelector(`#detail-${id}-btn`);
+    let list_features = childrens[i].querySelector(`#list_features-${id}-img`);
     let btn = childrens[i].querySelector(`#product-${id}-btn`);
     let qty_label = childrens[i].querySelector(`#quantity-${id}`);
     let qty_container = childrens[i].querySelector(`#quantity-${id}-container`);
@@ -244,6 +223,19 @@ async function Page_load_with_filer(category_id, sort_id) {
       localStorage.setItem('get_detail', id);
       window.location.href = '/pages/product-details.php';
     });
+
+    if (detail) {
+      detail.addEventListener('click', () => {
+        localStorage.setItem('get_detail', id);
+        window.location.href = '/pages/product-details.php';
+      });
+      detail.addEventListener('mouseover', () => {
+        list_features.classList.remove('d-none');
+      });
+      detail.addEventListener('mouseout', () => {
+        list_features.classList.add('d-none');
+      });
+    }
 
     // If add to cart is clicked
     btn.addEventListener('click', async () => {
@@ -274,40 +266,42 @@ async function Page_load_with_filer(category_id, sort_id) {
     });
 
     // Update product in cart
-    update_cart.addEventListener('click', async () => {
-      // Add to cart button is not clicked
-      if (qty_container.classList.contains('d-none')) return;
+    if (update_cart) {
+      update_cart.addEventListener('click', async () => {
+        // Add to cart button is not clicked
+        if (qty_container.classList.contains('d-none')) return;
 
-      let current_qty = parseInt(qty_label.value);
+        let current_qty = parseInt(qty_label.value);
 
-      //Checking logged in
-      const myToken = get_token();
+        //Checking logged in
+        const myToken = get_token();
 
-      //Access to cart first
-      const access_to_cart = await access_current_cart(myToken);
-      //--> Failed to access
-      if (!access_to_cart.status) {
-        alert(access_to_cart.message);
-        return;
-      }
+        //Access to cart first
+        const access_to_cart = await access_current_cart(myToken);
+        //--> Failed to access
+        if (!access_to_cart.status) {
+          alert(access_to_cart.message);
+          return;
+        }
 
-      //Update user's cart
-      const update_cart = await update_current_cart(myToken, id, current_qty);
-      alert(update_cart.message);
-      //--> Failed to update cart
-      //if(!(update_cart.status)) return;
+        //Update user's cart
+        const update_cart = await update_current_cart(myToken, id, current_qty);
+        alert(update_cart.message);
+        //--> Failed to update cart
+        //if(!(update_cart.status)) return;
 
-      if (current_qty === 0) {
-        // Delete from cart
-        const del_cart = await delete_from_cart(myToken, id);
-        alert(del_cart.message);
+        if (current_qty === 0) {
+          // Delete from cart
+          const del_cart = await delete_from_cart(myToken, id);
+          alert(del_cart.message);
 
-        // Exchange btn
-        qty_container.classList.add('d-none');
-        btn.classList.remove('d-none');
-        qty_label.value = '1';
-      }
-    });
+          // Exchange btn
+          qty_container.classList.add('d-none');
+          btn.classList.remove('d-none');
+          qty_label.value = '1';
+        }
+      });
+    }
   }
 }
 
