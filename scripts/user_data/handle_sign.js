@@ -2,7 +2,6 @@
 // // Function to check if the user is logged in
 function isLoggedIn() {
     const status = localStorage.getItem('user');
-
     return status;
 }
 
@@ -172,14 +171,13 @@ function get_global_email(){
 
 document.addEventListener('DOMContentLoaded', ()=>{
     let user_name = document.getElementById('user');
+    // let user_name_admin = document.getElementById('user-admin');
     let user_btn = document.getElementsByClassName('user-btn');
     let log = document.getElementById('log');
+    // let log_admin = document.getElementById('log-admin');
     let logbtn = document.getElementsByClassName('logout-btn');
-    console.log("oke",logbtn[1].parentElement);
 
     if(!isLoggedIn()){
-       
-        
         user_btn[1].parentNode.style.display = 'none';
         
      
@@ -190,6 +188,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         user_name.textContent = ''
         log.textContent = 'Log in'
+        // user_name_admin = ''
+        // log_admin = 'Log in'
         
         // log.href="./pages/sign.php"
 
@@ -210,6 +210,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
         user_btn[1].parentElement.style.display = 'block';
         user_name.textContent = "Xin chào, " +JSON.parse(localStorage.getItem('user')).data.name;
         log.textContent = 'Log out'
+        // user_name_admin.textContent = "Xin chào, " +JSON.parse(localStorage.getItem('user')).data.name;
+        // log_admin.textContent = 'Log out'
     }
 });
 
@@ -219,6 +221,7 @@ const user_name = document.getElementById('user');
 // const user_btn = document.getElementsByClassName('user-btn');
 const log = document.getElementById('log');
 const logbtnn = document.getElementsByClassName('logout-btn');
+
 
 logInLink.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default behavior of navigating to the empty href

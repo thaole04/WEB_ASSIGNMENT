@@ -13,7 +13,7 @@
 
             <!-- Navigation bar brand -->
             <a class="navbar-brand nav-img" href="../../index.php">
-                <img src="../images/nav-img.png" height="100%" width="100%" alt="">
+                <img src="../images/01_logobachkhoa.png" height="100%" width="100%" alt="">
             </a>
 
             <!-- Other icons -->
