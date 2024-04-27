@@ -31,85 +31,79 @@
     </div>
 
     <!-- BODY -->
-    <div class="p-5 row row-cols-lg-2 row-cols-1 m-0">
+    <div class="p-5 row row-cols-lg-2 row-cols-1 row-cols-md-1 m-0">
 
         <!-- Categories + Sort by -->
-        <div class="col col-lg-3 d-flex flex-column align-items-md-start align-items-center mb-5">
+        <div class="col col-lg-3 d-flex flex-column align-items-center mb-5" id="filter-menu">
 
             <div style="width: 200px;">
                 <!-- Categories -->
-                <div class="mb-lg-3 mb-3">
-
+                <div class="mb-lg-3 mb-2 ">
                     <!-- Header + Button dropdown -->
-                    <div class="pb-1 border-bottom border-dark d-flex justify-content-between">
-                        <div class="fw-bolder fb bg-light">Categories</div>
+                    <div class="pb-1 border-bottom border-dark border-2 d-flex justify-content-between">
+                        <p class="fw-bolder fb bg-light m-0" style="font-size: 20px">CATEGORIES</p>
                         <span class="d-lg-none">
                             <a class="btn p-0 m-0" data-bs-toggle="collapse" href="#categories-dropdown"
                                 aria-expanded="false" aria-controls="categories-dropdown">
-                                <img src="../../images/product_dropdown_icon.png" alt="dropdown-icon">
+                                <img src="../images/product_dropdown_icon.png" alt="dropdown-icon">
                             </a>
                         </span>
                     </div>
 
                     <!-- Content -->
-                    <div>
-                        <ul class="p-0 m-0 list-group list-group-flush d-lg-flex collapse gap-3"
-                            id="categories-dropdown">
-                            <!-- <li class="list-group-item border-0 fb ps-0 bg-light"><a class="fb fw-bolder text-decoration-none" href="#">All</a></li>
-                            <li class="list-group-item border-0 fb ps-0 bg-light"><a class="fb text-decoration-none" href="">Laptops</a></li>
-                            <li class="list-group-item border-0 fb ps-0 bg-light"><a class="fb text-decoration-none" href="">Pentesting</a></li>
-                            <li class="list-group-item border-0 fb ps-0 bg-light"><a class="fb text-decoration-none" href="">Microcontrollers</a></li>
-                            <li class="list-group-item border-0 fb ps-0 bg-light"><a class="fb text-decoration-none" href="">Tiny computers</a></li> -->
-
-                            <li class="form-check bg-light ps-0 mt-3">
-                                <input class="form-check-input rounded-0 shadow-none d-none" type="radio"
+                    <div class="m-0 mt-2">
+                        <ul class="p-0 m-0 list-group list-group-flush d-lg-flex collapse" id="categories-dropdown">
+                            <li class="form-check bg-light ps-0 pb-1" style="border-bottom: 1px dashed black">
+                                <input class="form-check-input rounded-0 shadow-none d-none active" type="radio"
                                     name="flexCheck-categories" id="all" checked>
-                                <label class="form-check-label fb" for="all">All</label>
+                                <label class="form-check-label fb p-2 label-categories" for="all">All</label>
                             </li>
-                            <li class="form-check bg-light ps-0">
+                            <li class="form-check bg-light ps-0 pb-1" style="border-bottom: 1px dashed black">
                                 <input class="form-check-input rounded-0 shadow-none d-none" type="radio"
                                     name="flexCheck-categories" id="laptops">
-                                <label class="form-check-label fb" for="laptops">Laptops</label>
+                                <label class="form-check-label fb p-2 label-categories" for="laptops">Laptops</label>
                             </li>
-                            <li class="form-check bg-light ps-0">
+                            <li class="form-check bg-light ps-0 pb-1" style="border-bottom: 1px dashed black">
                                 <input class="form-check-input rounded-0 shadow-none d-none" type="radio"
                                     name="flexCheck-categories" id="tablets">
-                                <label class="form-check-label fb" for="tablets">Tablets</label>
+                                <label class="form-check-label fb p-2 label-categories" for="tablets">Tablets</label>
                             </li>
-                            <li class="form-check bg-light ps-0">
+                            <li class="form-check bg-light ps-0 pb-1" style="border-bottom: 1px dashed black">
                                 <input class="form-check-input rounded-0 shadow-none d-none" type="radio"
                                     name="flexCheck-categories" id="accessories">
-                                <label class="form-check-label fb" for="accessories">Accessories</label>
+                                <label class="form-check-label fb p-2 label-categories"
+                                    for="accessories">Accessories</label>
                             </li>
-                            <li class="form-check bg-light ps-0">
+                            <li class="form-check bg-light ps-0 pb-1" style="border-bottom: 1px dashed black">
                                 <input class="form-check-input rounded-0 shadow-none d-none" type="radio"
                                     name="flexCheck-categories" id="raspberry-pis">
-                                <label class="form-check-label fb" for="raspberry-pis">Raspberry Pis</label>
+                                <label class="form-check-label fb p-2 label-categories" for="raspberry-pis">Raspberry
+                                    Pis</label>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Sort by -->
-                <div>
+                <div class="mb-3">
                     <!-- Header + Button dropdown -->
-                    <div class="pb-1 border-bottom border-dark d-flex justify-content-between">
-                        <div class="fw-bolder fb">Sort by</div>
+                    <div class="pb-1 border-bottom border-dark border-2 d-flex justify-content-between mb-3">
+                        <p class="fw-bolder fb bg-light m-0" style="font-size: 20px">SORT BY</p>
                         <span class="d-lg-none">
                             <a class="btn p-0 m-0" data-bs-toggle="collapse" href="#sortby-dropdown"
                                 aria-expanded="false" aria-controls="categories-dropdown">
-                                <img src="../../images/product_dropdown_icon.png" alt="dropdown-icon">
+                                <img src="../images/product_dropdown_icon.png" alt="dropdown-icon">
                             </a>
                         </span>
                     </div>
                     <!-- Content -->
                     <ul class="list-group list-group-flush d-lg-flex collapse" id="sortby-dropdown">
-                        <li class="form-check bg-light">
+                        <li class="form-check bg-light mb-1">
                             <input class="form-check-input rounded-0 shadow-none" type="radio" name="flexCheck-payment"
                                 id="default" checked>
                             <label class="form-check-label fb" for="default">Default</label>
                         </li>
-                        <li class="form-check bg-light">
+                        <li class="form-check bg-light mb-1">
                             <input class="form-check-input rounded-0 shadow-none" type="radio" name="flexCheck-payment"
                                 id="price-low-high">
                             <label class="form-check-label fb" for="price-low-high">Price (low-high)</label>
@@ -124,33 +118,43 @@
                 </div>
 
                 <!-- Applying filter btn -->
-                <div class="btn btn-primary w-100 mt-4" id="filter-btn">Filter</div>
-            </div>
+                <!-- <div class="btn btn-primary w-100 mt-4" id="filter-btn">Filter</div> -->
 
+                <div class="row">
+                    <div class="row"><button class="btn btn-primary mb-3" id="add-product-button" type="button">Add
+                            Product</button></div>
+                    <div class="row"><button class="btn btn-primary mb-3" id="add-product-button" type="button">Add
+                            Category</button></div>
+                    <div class="row"><button class="btn btn-primary mb-3" id="edit-product-button" type="button">Edit
+                            Product</button></div>
+                    <div class="row"><button class="btn btn-danger mb-3" id="delete-product-button" type="button">Delete
+                            Product</button></div>
+                </div>
+            </div>
         </div>
 
-        <!-- Products displayment -->
+        <!-- Products displacement -->
         <div class="col col-lg-9">
 
-            <!-- Edit button for admin -->
-            <div class="row">
-                <div class="col"><button class="btn btn-primary" id="add-product-button" type="button">Add
-                        Product</button></div>
-                <!-- <div class="col"><button class="btn btn-primary" id="add-catergory-button"type="button">Add Category</button></div>
-                <div class="col"><button class="btn btn-primary" id="edit-product-button" type="button">Edit Product</button></div>
-                <div class="col"><button class="btn btn-danger" id="delete-product-button" type="button">Delete Product</button></div> -->
-
-            </div>
-
             <!-- Header -->
-            <div class="d-flex flex-column align-items-md-start align-items-center mb-2">
+            <div class="mb-2 d-flex flex-row justify-content-between align-items-center px-4" style="width: 100%">
                 <!-- Results -->
                 <div class="fb" id="product-results"></div>
+                <div class="d-flex justify-content-between">
+                    <div class="btn p-0 m-0" style="width: 100px; border: 1px solid black;">
+                        <select class="btn" style="color: black; width: 100%;" id="money-menu">
+                            <option value="0" id="USD" selected>USD</option>
+                            <option value="1" id="VND">VND</option>
+                            <option value="2" id="EUR">EUR</option>
+                            <option value="3" id="JPN">JPN</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <!-- Loading Products -->
-            <div id="Products-Container">
-
+            <div id="Products-Container" class="d-flex">
+                <!-- CONTENT -->
             </div>
 
         </div>

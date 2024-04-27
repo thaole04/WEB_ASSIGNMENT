@@ -5,6 +5,11 @@ const category_id_list = {
   accessories: '?category_id=3',
   'raspberry-pis': '?category_id=4',
 };
+localStorage.setItem('moneyType', '0');
+var money = [1, 25345, 0.93, 158.01];
+var moneyType = localStorage.getItem('moneyType');
+var postFixMoney = ['USD', 'VND', 'EUR', 'JPY'];
+var selectElement = document.querySelector('#money-menu');
 
 // Fetch list of products
 async function Get_Product_List(category_id = '') {
@@ -135,7 +140,11 @@ function generateItem(id, name, image_url, price, short_description, quantity) {
         <div class="border-bottom border-dark mb-1 mt-2">
             <p class="fb fw-bolder text-center mb-2" id="product-${id}-name">${name}</p>
         </div>
-        <span class="fb fw-bolder" id="product-${id}-price">$${price}</span>
+        <span class="fb fw-bolder" id="product-${id}-price">${
+    Math.round(price * money[moneyType]).toFixed(2) +
+    ' ' +
+    postFixMoney[moneyType]
+  }</span>
         <div class="px-4 m-0 mt-2 d-flex justify-content-center" style="width: 100%;">
             <button type="button" class="btn btn-primary m-0 me-5 d-sm-none d-lg-block" id="detail-${id}-btn" style="max-height: 40px">Detail</button>
             <button type="button" class="btn btn-primary m-0" id="product-${id}-btn" style="max-height: 40px">Add to cart</button>
@@ -331,24 +340,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   let loading = await Page_load_with_filer(category_id, sort_id);
 });
 
-// Listen to Filter button
-document.querySelector('#filter-btn').addEventListener('click', async () => {
-  // Get all the radio buttons
-  const radioButtons = document.querySelectorAll(
-    '#categories-dropdown input[type="radio"]'
-  );
-  const sort_by = document.querySelectorAll(
-    '#sortby-dropdown input[type="radio"]'
-  );
-
+const radioButtons = document.querySelectorAll(
+  '#categories-dropdown input[type="radio"]'
+);
+const sort_by = document.querySelectorAll(
+  '#sortby-dropdown input[type="radio"]'
+);
+document.querySelector('#filter-menu').addEventListener('click', async () => {
   let category_id;
   let sort_id;
   // Add event listeners to each radio button
   radioButtons.forEach((radioButton) => {
+    const label = document.querySelector(`label[for="${radioButton.id}"]`);
     if (radioButton.checked) {
       category_id = radioButton.id;
+      label.classList.add('active');
       return;
     }
+    label.classList.remove('active');
   });
 
   sort_by.forEach((radioButton) => {
@@ -459,3 +468,25 @@ function modalMessage(message) {
     }, 400);
   }, 3000);
 }
+selectElement.addEventListener('change', async (event) => {
+  moneyType = event.target.value;
+  localStorage.setItem('moneyType', moneyType);
+
+  let category_id;
+  let sort_id;
+
+  if (!localStorage.getItem('filter-products')) {
+    category_id = '';
+    sort_id = 'default';
+  } else {
+    category_id = JSON.parse(
+      localStorage.getItem('filter-products')
+    ).category_id;
+    sort_id = JSON.parse(localStorage.getItem('filter-products')).sort_id;
+
+    change_checked_radio(category_id, sort_id);
+    category_id = category_id_list[category_id];
+  }
+
+  let loading = await Page_load_with_filer(category_id, sort_id);
+});
