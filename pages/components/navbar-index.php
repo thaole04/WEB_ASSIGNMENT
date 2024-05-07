@@ -86,10 +86,6 @@
                     </li>
 
                     <!-- User List -->
-                    <li class="nav-item" id="user-list-active">
-                        <a class="nav-link fw-bold fs-4 text-light"
-                            href="http://localhost/pages/admin/user-list.php">User List</a>
-                    </li>
 
                     <!-- Search icon -->
                     <li class="nav-item d-md-none d-sm-block d-flex">
