@@ -129,7 +129,7 @@ function generateItem(id, name, image_url, price, short_description, quantity) {
 
   var product_body = `
     <div class="d-flex flex-column justify-content-between align-items-center col-4 row-4" style="width: 100%; height: 100%;">
-        <div class="my-2 position-relative" style="width: 80%; height: auto;">
+        <div class="my-2 position-relative" style="width: 80%; height: 100%;">
             <div class="position-absolute d-none" style="width: 92%; height: 92%; background-color: rgba(240, 235, 227, 0.8); transition: 0.5s ease; transform: scale(1.1); right: 4%; top: 4%;" id="list_features-${id}-img">
                 <ul>
                     ${list_features}

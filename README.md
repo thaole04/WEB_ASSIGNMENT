@@ -1,5 +1,5 @@
 dedsec-store-website
 
 default admin account:
-email: lorem@ipsum.com
+email: thaole@gmail.com
 password: helloworld
