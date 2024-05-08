@@ -45,7 +45,7 @@
                         <span class="d-lg-none">
                             <a class="btn p-0 m-0" data-bs-toggle="collapse" href="#categories-dropdown"
                                 aria-expanded="false" aria-controls="categories-dropdown">
-                                <img src="../images/product_dropdown_icon.png" alt="dropdown-icon">
+                                <img src="../../images/product_dropdown_icon.png" alt="dropdown-icon">
                             </a>
                         </span>
                     </div>
@@ -92,7 +92,7 @@
                         <span class="d-lg-none">
                             <a class="btn p-0 m-0" data-bs-toggle="collapse" href="#sortby-dropdown"
                                 aria-expanded="false" aria-controls="categories-dropdown">
-                                <img src="../images/product_dropdown_icon.png" alt="dropdown-icon">
+                                <img src="../../images/product_dropdown_icon.png" alt="dropdown-icon">
                             </a>
                         </span>
                     </div>
